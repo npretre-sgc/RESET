@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --color-reset: #083a90;        /* Bleu principal */
+  --color-reset-2: #245fbb;      /* Bleu dynamique */
+  --color-reset-pale: #c7dcfe;   /* Fond pédagogique */
+  --color-coral: #ff555e;        /* Accent graphique uniquement */
+  --color-paper: #f6f8fc;        /* Fond principal */
+  --color-ink: #172b4d;          /* Texte principal */
+  --color-muted: #64748b;        /* Texte secondaire */
+
+  --font-display: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-reset;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: var(--color-reset-pale);
+    color: var(--color-ink);
+  }
+  /* Focus visible partout : corail, contraste ≥ 3:1 sur blanc comme sur bleu (WCAG 2.2, 1.4.11) */
+  :focus-visible {
+    outline: 3px solid var(--color-coral);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
